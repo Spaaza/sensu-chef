@@ -25,10 +25,8 @@ module Sensu
       end
 
       def gem_binary
-        if File.exists?("/opt/sensu/embedded/bin/gem")
+        if node['sensu']['use_embedded_ruby'] && File.exists?("/opt/sensu/embedded/bin/gem")
           "/opt/sensu/embedded/bin/gem"
-        elsif File.exists?("/usr/local/bin/gem")
-          "/usr/local/bin/gem"
         else
           "gem"
         end
