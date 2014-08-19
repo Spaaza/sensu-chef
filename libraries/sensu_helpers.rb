@@ -33,7 +33,7 @@ module Sensu
       end
 
       def data_bag_item(item, missing_ok=false)
-        raw_hash = data_bag_item("sensu", item)
+        raw_hash = Chef::DataBagItem.load("sensu", item)
         encrypted = raw_hash.detect do |key, value|
           if value.is_a?(Hash)
             value.has_key?("encrypted_data")
